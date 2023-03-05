@@ -1,28 +1,24 @@
 <template>
-    <div class="wrapper">
-        <navbar></navbar>
-        <sidebar></sidebar>
-        <div class="content-wrapper">
-        <!-- <ContentHeader></ContentHeader> -->
-
-        <section class="content">
-          <div class="container-fluid">
-            <!-- <ExampleForm></ExampleForm> -->
-          </div>
-        </section>
-      </div>
+  <div class="wrapper">
+    <navbar></navbar>
+    <sidebar></sidebar>
+    <div class="content-wrapper">
+      <section class="content">
+        <div class="container-fluid">
+          <slot />
+        </div>
+      </section>
     </div>
+
+    <Footer></Footer>
+  </div>
 </template>
 
-<script>
+<script setup>
 import Navbar from "../dashboard/Navbar.vue";
 import Sidebar from "../dashboard/Sidebar.vue";
+import Footer from "../dashboard/Footer.vue";
 
-export default {
-    components: {
-        Navbar,
-        Sidebar
-    }
-}
+
 
 </script>

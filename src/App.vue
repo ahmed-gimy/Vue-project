@@ -2,22 +2,9 @@
   <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
       <Preloader></Preloader>
-      <!-- <Navbar></Navbar> -->
-      <Sidebar></Sidebar>
-      <div class="content-wrapper">
-        <!-- <ContentHeader></ContentHeader> -->
-
-        <section class="content">
-          <div class="container-fluid">
-            <!-- <ExampleForm></ExampleForm> -->
-          </div>
-        </section>
-      </div>
-
-      <Footer></Footer>
-      <!-- <ControlSidebar></ControlSidebar> -->
+      
     </div>
-    <!-- <router-view/> -->
+    <router-view/>
   </body>
 </template>
 
@@ -30,8 +17,8 @@ import Preloader from "./dashboard/Preloader.vue";
 // import ContentHeader from "./dashboard/ContentHeader.vue";
 // import ExampleForm from "./components/ExampleForm.vue";
 // import Navbar from "./dashboard/Navbar.vue";
-import Sidebar from "./dashboard/Sidebar.vue";
-import Footer from "./dashboard/Footer.vue";
+// import Sidebar from "./dashboard/Sidebar.vue";
+// import Footer from "./dashboard/Footer.vue";
 // import ControlSidebar from "./dashboard/ControlSidebar.vue";
 
 export default {
@@ -41,8 +28,8 @@ export default {
     // ContentHeader,
     // ExampleForm,
     // Navbar,
-    Sidebar,
-    Footer,
+    // Sidebar,
+    // Footer,
     // ControlSidebar,
   },
   methods: {
