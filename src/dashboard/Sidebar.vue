@@ -65,7 +65,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-phone-alt"></i>
               <p>
                 Contacts
@@ -74,7 +74,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="#" class="nav-link">
                   <i class="fas fa-plus nav-icon"></i>
                   <p>Add</p>
                 </a>
@@ -219,8 +219,8 @@
   </aside>
 </template>
 
-<script>
-export default {};
+<script setup>
+
 </script>
 
 <style>
