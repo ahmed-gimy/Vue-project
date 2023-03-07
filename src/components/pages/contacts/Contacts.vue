@@ -1,10 +1,10 @@
 <template>
   <layout>
     <div class="container">
-      <button @click="showForm = true" class="btn btn-primary m-2">
+      <router-link to="/contacts/create"  class="btn btn-primary m-2">
         <i class="fas fa-plus nav-icon mx-2"></i>Add Contact
-      </button>
-      <div v-if="showForm" class="col-md-12">
+      </router-link>
+      <!-- <div v-if="showForm" class="col-md-12">
         <div class="card card-primary">
           <div class="card-header">
             <h3 class="card-title">Add Your Data Please</h3>
@@ -49,7 +49,7 @@
             </div>
           </form>
         </div>
-      </div>
+      </div> -->
       <div class="col-md-12">
         <div class="card">
           <table class="table text-center table-hover table-striped">
@@ -81,23 +81,23 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import layout from "../Layout.vue";
+// import { ref } from "vue";
+import layout from "../../Layout.vue";
 
-const showForm = ref(false);
-const x = {
-  name: "",
-  email: "",
-  address: "",
-  phone: "",
-};
-const newContact = ref({ ...x });
-const contacts = ref([]);
+// const showForm = ref(false);
+// const x = {
+//   name: "",
+//   email: "",
+//   address: "",
+//   phone: "",
+// };
+// const newContact = ref({ ...x });
+// const contacts = ref([]);
 
-const addContact = () => {
-  contacts.value.push(newContact.value);
-  showForm.value = false;
-  newContact.value = { ...x };
-};
+// const addContact = () => {
+//   contacts.value.push(newContact.value);
+//   showForm.value = false;
+//   newContact.value = { ...x };
+// };
 
 </script>

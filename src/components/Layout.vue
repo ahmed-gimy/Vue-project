@@ -5,8 +5,7 @@
     <div class="content-wrapper">
       <!-- <ContentHeader></ContentHeader> -->
       <section class="content">
-        <div class="container-fluid">
-          
+        <div class="container-fluid">      
           <slot />
         </div>
       </section>
