@@ -56,22 +56,22 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <router-link class="nav-link" to="/">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
-            </a>
+            </router-link>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <router-link to="/contacts"  class="nav-link">
               <i class="nav-icon fas fa-phone-alt"></i>
               <p>
                 Contacts
                 <i class="right fas fa-angle-left"></i>
               </p>
-            </a>
+            </router-link>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">
