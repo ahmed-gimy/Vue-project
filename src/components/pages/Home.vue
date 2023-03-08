@@ -1,9 +1,9 @@
 <template>
-    <layout>
+    <Layout>
         <div>
             <h1>Home</h1>
         </div>
-    </layout>
+    </Layout>
 </template>
 
 <script setup>

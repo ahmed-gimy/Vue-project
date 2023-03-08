@@ -65,13 +65,13 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <router-link to="/contacts"  class="nav-link">
               <i class="nav-icon fas fa-phone-alt"></i>
               <p>
                 Contacts
                 <i class="right fas fa-angle-left"></i>
               </p>
-            </a>
+            </router-link>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">
