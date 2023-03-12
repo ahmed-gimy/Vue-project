@@ -9,9 +9,10 @@
           <form action="simple-results.html">
             <div class="input-group card-tools">
               <input
+                v-model="search"
                 type="search"
                 class="form-control form-control"
-                placeholder="Search For Contacts"
+                placeholder="Search... "
               />
               <div class="input-group-append">
                 <button type="submit" class="btn btn-default">
@@ -144,8 +145,14 @@
 import { contacts } from "../../../stores/contactsStore";
 import layout from "../../Layout.vue";
 import { ref } from "vue";
-// import create from "./create.vue";
 
 const showModal = ref(false);
+const search = ref("");
+
+// watch(search, () => {
+//   contacts.contacts.value = contacts.contactInfo.filter((contacts) =>
+//     contacts.contactInfo.name.toLowerCase().includes(search.value.toLowerCase())
+//   );
+// });
 </script>
 

@@ -93,24 +93,4 @@
 <script setup>
 import { contacts } from "../../../stores/contactsStore";
 import layout from "../../Layout.vue";
-// import { ref } from "vue";
-// import router from "../../../router";
-
-// const contactInfo = {
-//   name: "",
-//   job: "",
-//   email: "",
-//   address: "",
-//   phone: "",
-//   about: "",
-//   img: "",
-// };
-// const contactInfo = ref({ ...contactInfo });
-// const contacts = ref([]);
-
-// const addContact = () => {
-//   contacts.value.push(contactInfo.value);
-//   contactInfo.value = { ...contactInfo };
-//   router.push({ path: "/contacts" });
-// };
 </script>

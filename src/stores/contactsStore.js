@@ -32,5 +32,5 @@ export const contacts = ref({
             about: "",
             img: "",
         }
-    }
+    },
 })
