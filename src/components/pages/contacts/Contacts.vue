@@ -1,103 +1,151 @@
 <template>
   <layout>
-    <div class="container">
-      <router-link to="/contacts/create"  class="btn btn-primary m-2">
-        <i class="fas fa-plus nav-icon mx-2"></i>Add Contact
-      </router-link>
-      <!-- <div v-if="showForm" class="col-md-12">
-        <div class="card card-primary">
-          <div class="card-header">
-            <h3 class="card-title">Add Your Data Please</h3>
-            <div class="card-tools">
-              <button @click="showForm = false" type="button" class="btn bg-danger btn-sm">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-          </div>
-
-          <form>
-            <div class="card-body">
-              <div class="form-group">
-                <label>Name</label>
-                <input required v-model="newContact.name" type="text" class="form-control"
-                  placeholder="Enter Your Name" />
+    <router-link to="/contacts/create" class="btn btn-primary mb-2">
+      <i class="fas fa-plus nav-icon mx-2"></i>Add Contact
+    </router-link>
+    <section class="content">
+      <div class="card card-solid">
+        <div class="card-header">
+          <form action="simple-results.html">
+            <div class="input-group card-tools">
+              <input
+                type="search"
+                class="form-control form-control"
+                placeholder="Search For Contacts"
+              />
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default">
+                  <i class="fa fa-search"></i>
+                </button>
               </div>
-              <div class="form-group">
-                <label>Email</label>
-                <input required v-model="newContact.email" type="email" class="form-control"
-                  placeholder="Enter Your Email" />
-              </div>
-              <div class="form-group">
-                <label>Address</label>
-                <input required v-model="newContact.address" type="address" class="form-control"
-                  placeholder="Enter Your Address" />
-              </div>
-              <div class="form-group">
-                <label>Phone</label>
-                <input required v-model="newContact.phone" type="phone" class="form-control"
-                  placeholder="Enter Your Phone" />
-              </div>
-            </div>
-
-            <div class="card-footer">
-              <button @click.prevent="addContact" type="button" class="btn btn-primary">
-                Add Contact
-              </button>
-              <button @click="showForm = false" type="button" class="btn bg-danger btn mx-2">
-                Close
-              </button>
             </div>
           </form>
         </div>
-      </div> -->
-      <div class="col-md-12">
-        <div class="card">
-          <table class="table text-center table-hover table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Address</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(contact, index) in contacts" :key="index">
-                <td>{{ contact.name }}</td>
-                <td>{{ contact.email }}</td>
-                <td>{{ contact.address }}</td>
-                <td>{{ contact.phone }}</td>
-                <td><i class="fas fa-pen nav-icon"></i></td>
-                <td><i class="fas fa-trash"></i></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="card-body pb-0">
+          <div class="row">
+            <div
+              v-for="(contact, index) in contacts.contacts"
+              :key="index"
+              class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column"
+            >
+              <div class="card bg-light d-flex flex-fill">
+                <div class="card-header text-muted border-bottom-0">
+                  {{ contact.job }}
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="lead">
+                        <b>{{ contact.name }}</b>
+                      </h2>
+                      <p class="text-muted text-sm">
+                        <b>About: </b> {{ contact.about }}
+                      </p>
+                      <ul class="ml-4 mb-0 fa-ul text-muted">
+                        <li class="small">
+                          <span class="fa-li"
+                            ><i class="fas fa-building"></i
+                          ></span>
+                          Address: {{ contact.address }}
+                        </li>
+                        <li class="small">
+                          <span class="fa-li"><i class="fas fa-at"></i></span>
+                          Email: {{ contact.email }}
+                        </li>
+                        <li class="small">
+                          <span class="fa-li"
+                            ><i class="fas fa-phone-alt"></i
+                          ></span>
+                          Phone: {{ contact.phone }}
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-5 text-center">
+                      <img
+                        src="{{ contact.img }}"
+                        alt="user-avatar"
+                        class="img-circle img-fluid"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="text-right">
+                    <a class="btn btn-info btn-sm" href="#">
+                      <i class="fas fa-pencil-alt"></i>
+                      Edit
+                    </a>
+                    <button
+                      @click="showModal = true"
+                      type="button"
+                      class="btn btn-danger btn-sm mx-2"
+                      data-toggle="modal"
+                      data-target="#modal-default"
+                    >
+                      <i class="fas fa-trash"></i>
+                      Delete
+                    </button>
+                  </div>
+                </div>
+                <div
+                  v-if="showModal"
+                  class="modal fade show"
+                  id="modal-default"
+                  aria-modal="true"
+                  role="dialog"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header bg-danger">
+                        <h4 class="modal-title">Warning</h4>
+                        <button
+                          @click="showModal = false"
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Are You Sure You Want To Delete This Contact ?</p>
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <button
+                          @click="showModal = false"
+                          type="button"
+                          class="btn btn-default"
+                          data-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                        <button
+                          @click.prevent="contacts.deleteContact(index)"
+                          type="button"
+                          class="btn btn-danger"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   </layout>
 </template>
 
 <script setup>
-// import { ref } from "vue";
+import { contacts } from "../../../stores/contactsStore";
 import layout from "../../Layout.vue";
+import { ref } from "vue";
+// import create from "./create.vue";
 
-// const showForm = ref(false);
-// const x = {
-//   name: "",
-//   email: "",
-//   address: "",
-//   phone: "",
-// };
-// const newContact = ref({ ...x });
-// const contacts = ref([]);
-
-// const addContact = () => {
-//   contacts.value.push(newContact.value);
-//   showForm.value = false;
-//   newContact.value = { ...x };
-// };
-
+const showModal = ref(false);
 </script>
+
