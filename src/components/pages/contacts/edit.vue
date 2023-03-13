@@ -2,7 +2,7 @@
   <layout>
     <div class="card card-primary">
       <div class="card-header">
-        <h3 class="card-title">Add Your Data Please</h3>
+        <h3 class="card-title">Update Your Data Please</h3>
       </div>
       <form>
         <div class="card-body">
@@ -88,19 +88,19 @@
 
         <div class="card-footer text-center">
           <button
-            @click.prevent="contacts.addContact"
+            @click.prevent="contacts.updateContact"
             type="button"
             class="btn btn-primary"
           >
-            Add Contact
+            Update Contact
           </button>
         </div>
       </form>
     </div>
   </layout>
 </template>
-
-<script setup>
+  
+  <script setup>
 import { contacts } from "../../../stores/contactsStore";
 import layout from "../../Layout.vue";
 </script>

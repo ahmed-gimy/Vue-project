@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../components/pages/Home.vue";
 import Contacts from "../components/pages/contacts/Contacts.vue";
 import createContact from "../components/pages/contacts/create.vue";
+import editContact from "../components/pages/contacts/edit.vue";
 import Products from "../components/pages/Products.vue";
 import Projects from "../components/pages/Projects.vue";
 import Admin from "../components/pages/Admin.vue";
@@ -27,6 +28,10 @@ const routes = [
   {
     path:"/contacts/create",
     component: createContact,
+  },
+  {
+    path:"/contacts/edit",
+    component: editContact,
   },
   {
     path: "/products",

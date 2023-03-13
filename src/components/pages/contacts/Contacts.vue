@@ -9,7 +9,7 @@
           <form action="simple-results.html">
             <div class="input-group card-tools">
               <input
-                v-model="search"
+                v-model.trim="search"
                 type="search"
                 class="form-control form-control"
                 placeholder="Search... "
@@ -72,12 +72,19 @@
                 </div>
                 <div class="card-footer">
                   <div class="text-right">
-                    <a class="btn btn-info btn-sm" href="#">
+                    <router-link
+                      to="/contacts/edit"
+                      @click="contacts.editContact(index)"
+                      class="btn btn-info btn-sm"
+                    >
                       <i class="fas fa-pencil-alt"></i>
                       Edit
-                    </a>
+                    </router-link>
                     <button
-                      @click="showModal = true"
+                      @click="
+                        showModal = true;
+                        actionIndex = index;
+                      "
                       type="button"
                       class="btn btn-danger btn-sm mx-2"
                       data-toggle="modal"
@@ -88,48 +95,52 @@
                     </button>
                   </div>
                 </div>
-                <div
-                  v-if="showModal"
-                  class="modal fade show"
-                  id="modal-default"
-                  aria-modal="true"
-                  role="dialog"
-                >
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header bg-danger">
-                        <h4 class="modal-title">Warning</h4>
-                        <button
-                          @click="showModal = false"
-                          type="button"
-                          class="close"
-                          data-dismiss="modal"
-                          aria-label="Close"
-                        >
-                          <span aria-hidden="true">×</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <p>Are You Sure You Want To Delete This Contact ?</p>
-                      </div>
-                      <div class="modal-footer justify-content-between">
-                        <button
-                          @click="showModal = false"
-                          type="button"
-                          class="btn btn-default"
-                          data-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                        <button
-                          @click.prevent="contacts.deleteContact(index)"
-                          type="button"
-                          class="btn btn-danger"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </div>
+              </div>
+            </div>
+            <div
+              v-if="showModal"
+              class="modal fade show"
+              id="modal-default"
+              aria-modal="true"
+              role="dialog"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header bg-danger">
+                    <h4 class="modal-title">Warning</h4>
+                    <button
+                      @click="showModal = false"
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Are You Sure You Want To Delete This Contact ?</p>
+                  </div>
+                  <div class="modal-footer justify-content-between">
+                    <button
+                      @click="showModal = false"
+                      type="button"
+                      class="btn btn-default"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button
+                      @click.prevent="
+                        contacts.deleteContact(actionIndex);
+                        showModal = false;
+                      "
+                      type="button"
+                      class="btn btn-danger"
+                      data-dismiss="modal"
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
               </div>
@@ -144,15 +155,18 @@
 <script setup>
 import { contacts } from "../../../stores/contactsStore";
 import layout from "../../Layout.vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const showModal = ref(false);
+const actionIndex = ref(0);
 const search = ref("");
 
-// watch(search, () => {
-//   contacts.contacts.value = contacts.contactInfo.filter((contacts) =>
-//     contacts.contactInfo.name.toLowerCase().includes(search.value.toLowerCase())
-//   );
-// });
+watch(search, () => {
+  contacts.value.contacts = contacts.value.contacts.filter(
+    (contact) =>
+      contact.name.toLowerCase().includes(search.value.toLowerCase()) ||
+      contact.about.toLowerCase().includes(search.value.toLowerCase())
+  );
+});
 </script>
 

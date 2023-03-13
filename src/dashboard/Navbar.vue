@@ -10,10 +10,10 @@
         </a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
+        <router-link to="/" class="nav-link">Home</router-link>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contacts</a>
+        <router-link to="/contacts" class="nav-link">Contacts</router-link>
       </li>
     </ul>
 
