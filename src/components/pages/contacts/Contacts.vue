@@ -6,7 +6,8 @@
     <section class="content">
       <div class="card card-solid">
         <div class="card-header">
-          <form action="simple-results.html">
+          <h1 v-if="contacts.contacts.length < 1">Sorry</h1>
+          <form v-if="contacts.contacts.length > 0">
             <div class="input-group card-tools">
               <input
                 v-model.trim="search"
@@ -23,6 +24,7 @@
           </form>
         </div>
         <div class="card-body pb-0">
+          <h3 v-if="contacts.contacts.length < 1">No Contacts Are Found</h3>
           <div class="row">
             <div
               v-for="(contact, index) in contacts.contacts"
