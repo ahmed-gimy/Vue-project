@@ -128,7 +128,7 @@
           <div class="form-group">
             <label>Image</label>
             <div class="input-group mb-0">
-              <input type="file" class="form-control" id="inputGroupFile02" />
+              <input type="file" class="form-control" id="inputGroupFile02" @change="contacts.onFileChange"/>
               <label class="input-group-text" for="inputGroupFile02"
                 >Upload</label
               >
@@ -161,11 +161,9 @@ const v$ = useVuelidate(contacts.rules, contacts.contactInfo, {
   $autoDirty: true,
 });
 const submitForm = async () => {
-  const result = await v$.value.$validate();
-  if (result) {
+  const isValid = await v$.value.$validate();
+  if (isValid) {
     contacts.addContact();
-  }else{
-    console.log("good");
   }
 };
 

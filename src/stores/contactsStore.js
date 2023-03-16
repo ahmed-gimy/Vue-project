@@ -51,9 +51,15 @@ export const contacts = reactive({
             numeric: helpers.withMessage('* must be a number', numeric),
         },
         img: {
-            // required: helpers.withMessage('* img is required', required),
+            required: helpers.withMessage('* img is required', required),
         },
 }}),
+
+    onFileChange(e){
+        const files = e.target.files
+        console.log(files[0].name)
+        this.contactInfo.img = files[0];
+    },
 
     addContact(){
         this.contacts.push(this.contactInfo);
@@ -111,7 +117,8 @@ export const contacts = reactive({
     },
 
     editContact(index){
-        this.contactInfo = this.contacts[index];
+        this.contactInfo = {...this.contacts[index]};
+        console.log(this.contactInfo)
         this.editedContact = index;
     },
 

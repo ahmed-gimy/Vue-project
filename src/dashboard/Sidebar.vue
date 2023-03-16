@@ -24,7 +24,9 @@
           />
         </div>
         <div class="info">
-          <a href="https://weblytech.com/" target="blanck" class="d-block">Weblytech</a>
+          <a href="https://weblytech.com/" target="blanck" class="d-block"
+            >Weblytech</a
+          >
         </div>
       </div>
 
@@ -65,7 +67,7 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/contacts"  class="nav-link">
+            <router-link to="/contacts" class="nav-link">
               <i class="nav-icon fas fa-phone-alt"></i>
               <p>
                 Contacts
@@ -74,10 +76,31 @@
             </router-link>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link to="/contacts/create" class="nav-link">
+                <router-link
+                  to="/contacts/create"
+                  class="nav-link"
+                  @click="contacts.resetContactInfo()"
+                >
                   <i class="fas fa-plus nav-icon"></i>
                   <p>Add</p>
                 </router-link>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <router-link to="/tasks" href="#" class="nav-link">
+              <i class="nav-icon fas fa-tasks"></i>
+              <p>
+                Tasks
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </router-link>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>Add</p>
+                </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -123,35 +146,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tasks"></i>
-              <p>
-                Tasks
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-plus nav-icon"></i>
-                  <p>Add</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-pen nav-icon"></i>
-                  <p>Edit</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-info-circle nav-icon"></i>
-                  <p>Details</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cart-plus"></i>
@@ -220,7 +215,7 @@
 </template>
 
 <script setup>
-  
+import { contacts } from "../stores/contactsStore";
 </script>
 
 <style>

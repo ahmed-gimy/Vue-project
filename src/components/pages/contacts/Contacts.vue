@@ -1,6 +1,10 @@
 <template>
   <layout>
-    <router-link to="/contacts/create" class="btn btn-primary mb-2">
+    <router-link
+      to="/contacts/create"
+      class="btn btn-primary mb-2"
+      @click="contacts.resetContactInfo()"
+    >
       <i class="fas fa-plus nav-icon mx-2"></i>Add Contact
     </router-link>
     <section class="content">
