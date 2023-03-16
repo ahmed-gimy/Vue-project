@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 window.$ = window.jQuery = require("jquery");
+import Toaster from "@meforma/vue-toaster";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
@@ -51,4 +52,4 @@ import "../node_modules/admin-lte/plugins/dropzone/min/dropzone.min.css"
 library.add(fas, fab, far, faLock, faEnvelope, faFacebook, faGooglePlus);
 dom.watch()
 
-createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router).mount('#app')
+createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router, Toaster).mount('#app')
