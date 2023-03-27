@@ -1,3 +1,4 @@
+<!-- eslint-disable no-unused-vars -->
 <template>
   <layout>
     <div class="card card-solid">
@@ -115,13 +116,6 @@
                               class="title-input bg-transparent focus:bg-white rounded"
                               type="text"
                               @keyup.enter="$event.target.blur()"
-                              @keydown.backspace="
-                                task.title === ''
-                                  ? (tasks = tasks.filter(
-                                      (c) => c.id !== task.id
-                                    ))
-                                  : null
-                              "
                             />
                           </span>
                         </div>
@@ -138,6 +132,7 @@
                           <button
                             style="border: none"
                             class="bg-danger rounded"
+                            @click="deleteTask(task.id)"
                           >
                             <i
                               style="cursor: pointer"
@@ -170,15 +165,39 @@ import { useKeyModifier } from "@vueuse/core";
 
 const alt = useKeyModifier("Alt");
 const columns = ref([]);
+let tasks = [];
 const createColumn = () => {
+  tasks = [];
   const columnInfo = {
     id: nanoid(),
     title: "",
-    tasks: [],
+    tasks,
   };
   columns.value.push(columnInfo);
   nextTick(() => {
     document.querySelector(".column:last-child .title-input").focus();
   });
 };
+
+// console.log(columns.value);
+const deleteTask = (identity) => {
+  // console.log(tasks[0].id);
+  // tasks.filter((t) => {
+  //   t.id != t[id];
+  // });
+  tasks.map((task, i) => {
+    // console.log(t.id);
+    // console.log(identity);
+    // console.log(t.id == identity);
+    if (task.id == identity) {
+      removeByIndex(i);
+    }
+  });
+};
+function removeByIndex(index) {
+  console.log("object");
+  tasks = tasks.filter((t, i) => {
+    i != index;
+  });
+}
 </script>
