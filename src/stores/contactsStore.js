@@ -24,40 +24,39 @@ export const contacts = reactive({
         return {
         name: { 
             required: helpers.withMessage('* name is required', required), 
-            minLength: helpers.withMessage('* name must be more than 10 characters', minLength(10)) ,
+            minLength: helpers.withMessage('* name must be more than 10 characters', minLength(3)) ,
         },
         job: { 
-            required: helpers.withMessage('* job is required', required), 
+            // required: helpers.withMessage('* job is required', required), 
             minLength: helpers.withMessage('* job must be more than 3 characters', minLength(3)),
         },
         email: { 
-            required: helpers.withMessage('* email is required', required), 
+            // required: helpers.withMessage('* email is required', required), 
             email: helpers.withMessage('* must be an email', email),
         },
         address: { 
-            required: helpers.withMessage('* address is required', required), 
+            // required: helpers.withMessage('* address is required', required), 
             minLength: helpers.withMessage('* address must be more than 10 characters', minLength(10)),
         },
         phone: { 
-            required: helpers.withMessage('* phone is required', required), 
+            // required: helpers.withMessage('* phone is required', required), 
             numeric: helpers.withMessage('* must be a number', numeric),
         },
         about: { 
-            required: helpers.withMessage('* about is required', required), 
+            // required: helpers.withMessage('* about is required', required), 
             minLength: helpers.withMessage('* about must be more than 10 characters', minLength(10)),
         },
         rate: { 
-            required: helpers.withMessage('* rate is required', required),
+            // required: helpers.withMessage('* rate is required', required),
             numeric: helpers.withMessage('* must be a number', numeric),
         },
         img: {
-            required: helpers.withMessage('* img is required', required),
+            // required: helpers.withMessage('* img is required', required),
         },
 }}),
 
     onFileChange(e){
         const files = e.target.files
-        console.log(files[0].name)
         this.contactInfo.img = files[0];
     },
 
@@ -118,7 +117,6 @@ export const contacts = reactive({
 
     editContact(index){
         this.contactInfo = {...this.contacts[index]};
-        console.log(this.contactInfo)
         this.editedContact = index;
     },
 

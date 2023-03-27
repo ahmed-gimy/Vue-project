@@ -1,7 +1,7 @@
 <template>
   <layout>
     <div class="card card-primary">
-      <div class="card-header">
+      <div class="card-header bg-info">
         <h3 class="card-title">Update Your Data Please</h3>
       </div>
       <form @submit.prevent="submitForm">
@@ -137,7 +137,7 @@
         </div>
 
         <div class="card-footer text-center">
-          <button type="submit" class="btn btn-primary">Update Contact</button>
+          <button type="submit" class="btn btn-info">Update Contact</button>
         </div>
       </form>
     </div>

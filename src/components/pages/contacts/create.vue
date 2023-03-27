@@ -1,7 +1,7 @@
 <template>
   <layout>
     <div class="card card-primary">
-      <div class="card-header">
+      <div class="card-header bg-info">
         <h3 class="card-title">Add Your Data Please</h3>
       </div>
       <form @submit.prevent="submitForm">
@@ -143,7 +143,7 @@
           </div>
         </div>
         <div class="card-footer text-center">
-          <button type="submit" class="btn btn-primary">Add Contact</button>
+          <button type="submit" class="btn btn-info">Add Contact</button>
         </div>
       </form>
     </div>

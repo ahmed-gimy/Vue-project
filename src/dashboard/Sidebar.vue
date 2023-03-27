@@ -92,57 +92,25 @@
               <i class="nav-icon fas fa-tasks"></i>
               <p>
                 Tasks
-                <i class="fas fa-angle-left right"></i>
+                <!-- <i class="fas fa-angle-left right"></i> -->
               </p>
             </router-link>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-plus nav-icon"></i>
-                  <p>Add</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-pen nav-icon"></i>
-                  <p>Edit</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-info-circle nav-icon"></i>
-                  <p>Details</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <router-link to="/projects" class="nav-link">
               <i class="nav-icon fas fa-project-diagram"></i>
               <p>
                 Projects
                 <i class="fas fa-angle-left right"></i>
                 <!-- <span class="badge badge-info right">6</span> -->
               </p>
-            </a>
+            </router-link>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <router-link to="/projects/create" class="nav-link">
                   <i class="fas fa-plus nav-icon"></i>
                   <p>Add</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-pen nav-icon"></i>
-                  <p>Edit</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-info-circle nav-icon"></i>
-                  <p>Details</p>
-                </a>
+                </router-link>
               </li>
             </ul>
           </li>

@@ -4,7 +4,8 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1 class="m-0">Dashboard</h1>
+                <h1 class="m-0">{{x}}</h1>
+                <button @click="fun" class="m-0">Dashboard</button>
               </div>
               <!-- /.col -->
               <div class="col-sm-6">
@@ -23,7 +24,14 @@
 </template>
 
 <script setup>
-
+import {ref} from "vue";
+import router from "../router/index";
+const x = ref("")
+const fun = () =>{
+ const y = router.currentRoute.value.fullPath
+  x.value = y
+  console.log(router.currentRoute.value.fullPath)
+}
 </script>
 
 <style>
