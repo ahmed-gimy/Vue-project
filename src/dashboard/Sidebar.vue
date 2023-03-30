@@ -116,13 +116,13 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <router-link to="/products" class="nav-link">
               <i class="nav-icon fas fa-cart-plus"></i>
               <p>
                 Products
                 <i class="fas fa-angle-left right"></i>
               </p>
-            </a>
+            </router-link>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -145,13 +145,13 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <router-link to="/invoice" class="nav-link">
               <i class="nav-icon fas fa-money-check-alt"></i>
               <p>
-                Quote
+                Invoice
                 <i class="fas fa-angle-left right"></i>
               </p>
-            </a>
+            </router-link>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">

@@ -128,7 +128,12 @@
           <div class="form-group">
             <label>Image</label>
             <div class="input-group mb-0">
-              <input type="file" class="form-control" id="inputGroupFile02" @change="contacts.onFileChange"/>
+              <input
+                type="file"
+                class="form-control"
+                id="inputGroupFile02"
+                @change="contacts.onFileChange"
+              />
               <label class="input-group-text" for="inputGroupFile02"
                 >Upload</label
               >
@@ -166,6 +171,4 @@ const submitForm = async () => {
     contacts.addContact();
   }
 };
-
-
 </script>

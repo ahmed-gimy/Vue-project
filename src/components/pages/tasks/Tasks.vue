@@ -120,7 +120,7 @@
                           </span>
                         </div>
                         <div class="p-2 float-left">
-                          <button
+                          <!-- <button
                             style="border: none"
                             class="bg-info mx-2 rounded"
                           >
@@ -128,7 +128,7 @@
                               style="cursor: pointer"
                               class="fas fa-pencil-alt mx-2"
                             ></i>
-                          </button>
+                          </button> -->
                           <button
                             style="border: none"
                             class="bg-danger rounded"

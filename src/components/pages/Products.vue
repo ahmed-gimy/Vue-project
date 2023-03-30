@@ -1,5 +1,9 @@
 <template>
-    <div>
+    <layout>
     <h1>Products</h1>
-    </div>
+    </layout>
 </template>
+
+<script setup>
+import layout from "../Layout.vue";
+</script>
