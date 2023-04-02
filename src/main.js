@@ -2,7 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 window.$ = window.jQuery = require("jquery");
-import Toaster from "@meforma/vue-toaster";
+import 'bootstrap/dist/css/bootstrap.css';
+import bootstrap from 'bootstrap/dist/js/bootstrap.js'
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
@@ -36,6 +37,12 @@ import "../node_modules/admin-lte/plugins/bs-stepper/js/bs-stepper.min.js"
 import "../node_modules/admin-lte/plugins/dropzone/min/dropzone.min.js"
 
 
+//import DataTable
+import '../public/assets/DataTables/datatables.min.css'
+import '../public/assets/DataTables/Buttons-2.3.6/css/buttons.bootstrap.min.css'
+
+
+
 //import adminlte styles
 import '../node_modules/admin-lte/dist/css/adminlte.min.css'
 import "../node_modules/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"
@@ -52,4 +59,4 @@ import "../node_modules/admin-lte/plugins/dropzone/min/dropzone.min.css"
 library.add(fas, fab, far, faLock, faEnvelope, faFacebook, faGooglePlus);
 dom.watch()
 
-createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router, Toaster).mount('#app')
+createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router, bootstrap).mount('#app')

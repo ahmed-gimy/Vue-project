@@ -64,7 +64,7 @@
           </div>
         </div>
         <div class="card-footer text-center">
-          <button @click="projects.editProject" class="btn btn-info">
+          <button class="btn btn-info">
             Update Project
           </button>
         </div>

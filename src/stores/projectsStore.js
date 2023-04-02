@@ -2,14 +2,11 @@ import { reactive, computed } from "vue";
 import { required, helpers, minLength, numeric } from "@vuelidate/validators"
 import router from "../router/index";
 import Swal from "sweetalert2";
-import DataTable from 'datatables.net-vue3';
-import DataTablesLib from 'datatables.net';
-import 'datatables.net-select';
-
-DataTable.use(DataTablesLib);
 
 export const projects = reactive({
-    
+
+    editedProject: null,
+
     data: [],
 
     rowInfo: {
@@ -20,8 +17,8 @@ export const projects = reactive({
         budget: "",
         Leader: "",
         Client: "",
-        
     },
+
 
     rules: computed (() => {
         return {
@@ -30,73 +27,67 @@ export const projects = reactive({
             minLength: helpers.withMessage('* name must be more than 3 characters', minLength(3)) ,
         },
         description: { 
-            required: helpers.withMessage('* description is required', required), 
+            // required: helpers.withMessage('* description is required', required), 
             minLength: helpers.withMessage('* description must be more than 10 characters', minLength(10)),
         },
         duration: { 
-            required: helpers.withMessage('* duration is required', required), 
+            // required: helpers.withMessage('* duration is required', required), 
             numeric: helpers.withMessage('* must be a number', numeric),
         },
         Status: { 
-            required: helpers.withMessage('* Status is required', required), 
+            // required: helpers.withMessage('* Status is required', required), 
         },
         budget: { 
-            required: helpers.withMessage('* budget is required', required), 
+            // required: helpers.withMessage('* budget is required', required), 
             numeric: helpers.withMessage('* must be a number', numeric),
         },
         Leader: { 
-            required: helpers.withMessage('* Leader is required', required), 
+            // required: helpers.withMessage('* Leader is required', required), 
             minLength: helpers.withMessage('* Leader must be more than 3 characters', minLength(3)),
         },
         Client: { 
-            required: helpers.withMessage('* Client is required', required),
+            // required: helpers.withMessage('* Client is required', required),
         },
 }}),
 
     columns: [
         {
-            data: "a",
-            title: "name"
+            data: "name"
         },
         {
-            data: "b",
-            title: "description"
+            data: "description"
         },
         {
-            data: "c",
-            title: "duration"
+            data: "duration"
         },
         {
-            data: "d",
-            title: "Status"
+            data: "Status"
         },
         {
-            data: "e",
-            title: "budget"
+            data: "budget"
         },
         {
-            data: "f",
-            title: "Leader"
+            data: "Leader"
         },
         {
-            data: "g",
-            title: "Client"
+            data: "Client"
         },
-        
+        // {
+        //     data: null,
+        //     className: "dt-center editor-edit",
+        //     defaultContent: '<router-link to="/projects/edit" class="fas fa-pencil-alt"/>',
+        //     orderable: false
+        // },
+        // {
+        //     data: null,
+        //     className: "dt-center editor-delete",
+        //     defaultContent: '<i class="fa fa-trash"/>',
+        //     orderable: false
+        // }
     ],
     
     addProject(){
-        const dataInfo = {
-            a: this.rowInfo.name,
-            b: this.rowInfo.Client,
-            c: this.rowInfo.Leader,
-            d: this.rowInfo.Status,
-            e: this.rowInfo.budget,
-            f: this.rowInfo.description,
-            g: this.rowInfo.duration,
-        }
-        this.data.push(dataInfo);
-        console.log(this.data)
+        this.data.push(this.rowInfo);
         this.resetRowInfo();
         Swal.fire({
             position: 'center',
@@ -117,8 +108,12 @@ export const projects = reactive({
             Status: "",
             budget: "",
             Leader: "",
-            Client : "",
-            
+            Client: "",
         }
+    },
+
+    editProject(index){
+        this.rowInfo = {...this.data[index]};
+        this.editedProject = index;
     },
 })
