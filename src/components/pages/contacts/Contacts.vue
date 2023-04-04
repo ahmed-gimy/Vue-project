@@ -2,7 +2,7 @@
   <layout>
     <router-link
       to="/contacts/create"
-      class="btn btn-info mb-2"
+      class="btn btn-success my-2"
       @click="contacts.resetContactInfo()"
     >
       <i class="fas fa-plus nav-icon mx-2"></i>Add Contact
@@ -15,7 +15,7 @@
               <input
                 v-model.trim="search"
                 type="search"
-                class="form-control form-control"
+                class="form-control"
                 placeholder="Search... "
               />
               <div class="input-group-append">
@@ -27,7 +27,7 @@
           </form>
         </div>
         <div class="card-body pb-0">
-          <h3 v-if="contacts.contacts.length < 1">No Contacts Are Found</h3>
+          <h3 class="text-center" v-if="contacts.contacts.length < 1">No Contacts Are Found</h3>
           <div class="row">
             <div
               v-for="(contact, index) in contacts.contacts"

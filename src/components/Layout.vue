@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper">
-    <navbar></navbar>
+    <navbar class="mb-5"></navbar>
     <sidebar></sidebar>
     <div class="content-wrapper">
-      <ContentHeader></ContentHeader>
+      <!-- <ContentHeader></ContentHeader> -->
       <section class="content">
         <div class="container-fluid">      
           <slot />
@@ -19,5 +19,5 @@
 import Navbar from "../dashboard/Navbar.vue";
 import Sidebar from "../dashboard/Sidebar.vue";
 import Footer from "../dashboard/Footer.vue";
-import ContentHeader from "../dashboard/ContentHeader.vue";
+// import ContentHeader from "../dashboard/ContentHeader.vue";
 </script>

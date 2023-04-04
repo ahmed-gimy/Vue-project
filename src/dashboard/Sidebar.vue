@@ -88,14 +88,23 @@
             </ul>
           </li>
           <li class="nav-item">
-            <router-link to="/tasks" href="#" class="nav-link">
-              <i class="nav-icon fas fa-tasks"></i>
+            <router-link to="/products" class="nav-link">
+              <i class="nav-icon fas fa-cart-plus"></i>
               <p>
-                Tasks
-                <!-- <i class="fas fa-angle-left right"></i> -->
+                Products
+                <i class="fas fa-angle-left right"></i>
               </p>
             </router-link>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link to="/products/create" @click="products.resetProductInfo()" class="nav-link">
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>Add</p>
+                </router-link>
+              </li>
+            </ul>
           </li>
+
           <li class="nav-item">
             <router-link to="/projects" class="nav-link">
               <i class="nav-icon fas fa-project-diagram"></i>
@@ -107,43 +116,27 @@
             </router-link>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link to="/projects/create" class="nav-link">
+                <router-link
+                  @click="projects.resetRowInfo()"
+                  to="/projects/create"
+                  class="nav-link"
+                >
                   <i class="fas fa-plus nav-icon"></i>
                   <p>Add</p>
                 </router-link>
               </li>
             </ul>
           </li>
-
           <li class="nav-item">
-            <router-link to="/products" class="nav-link">
-              <i class="nav-icon fas fa-cart-plus"></i>
+            <router-link to="/tasks" href="#" class="nav-link">
+              <i class="nav-icon fas fa-tasks"></i>
               <p>
-                Products
-                <i class="fas fa-angle-left right"></i>
+                Tasks
+                <!-- <i class="fas fa-angle-left right"></i> -->
               </p>
             </router-link>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-plus nav-icon"></i>
-                  <p>Add</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-pen nav-icon"></i>
-                  <p>Edit</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-info-circle nav-icon"></i>
-                  <p>Details</p>
-                </a>
-              </li>
-            </ul>
           </li>
+
           <li class="nav-item">
             <router-link to="/invoice" class="nav-link">
               <i class="nav-icon fas fa-money-check-alt"></i>
@@ -152,26 +145,6 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </router-link>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-plus nav-icon"></i>
-                  <p>Add</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-pen nav-icon"></i>
-                  <p>Edit</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-info-circle nav-icon"></i>
-                  <p>Details</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <!-- <li class="nav-header">EXAMPLES</li> -->
         </ul>
@@ -184,6 +157,8 @@
 
 <script setup>
 import { contacts } from "../stores/contactsStore";
+import { projects } from "../stores/projectsStore";
+import { products } from "../stores/productsStore";
 </script>
 
 <style>

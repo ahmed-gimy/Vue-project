@@ -118,6 +118,9 @@ export const contacts = reactive({
     editContact(index){
         this.contactInfo = {...this.contacts[index]};
         this.editedContact = index;
+        console.log(index);
+        console.log(this.editedContact);
+        console.log(this.contactInfo);
     },
 
     updateContact(){

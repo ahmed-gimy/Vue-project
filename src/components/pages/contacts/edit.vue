@@ -121,7 +121,7 @@
           <div class="form-group">
             <label>Image</label>
             <div class="input-group mb-0">
-              <input  type="file" class="form-control" id="inputGroupFile02" />
+              <input type="file" class="form-control" id="inputGroupFile02" />
               <label class="input-group-text" for="inputGroupFile02"
                 >Upload</label
               >

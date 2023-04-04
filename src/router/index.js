@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-// import Layout from "../components/Layout.vue";
 import Home from "../components/pages/Home.vue";
 import Contacts from "../components/pages/contacts/Contacts.vue";
 import createContact from "../components/pages/contacts/create.vue";
@@ -7,7 +6,9 @@ import editContact from "../components/pages/contacts/edit.vue";
 import Projects from "../components/pages/projects/Projects.vue";
 import createProject from "../components/pages/projects/createProject.vue";
 import editProject from "../components/pages/projects/editProject.vue";
-import Products from "../components/pages/Products.vue";
+import Products from "../components/pages/products/Products.vue";
+import createProduct from "../components/pages/products/createProduct.vue";
+import editProduct from "../components/pages/products/editProduct.vue";
 import Admin from "../components/pages/Admin.vue";
 import Users from "../components/pages/Users.vue";
 import Settings from "../components/pages/Settings.vue";
@@ -50,6 +51,14 @@ const routes = [
   {
     path: "/products",
     component: Products,
+  },
+  {
+    path:"/products/create",
+    component: createProduct,
+  },
+  {
+    path:"/products/edit",
+    component: editProduct,
   },
   {
     path: "/admin",

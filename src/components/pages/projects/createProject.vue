@@ -123,7 +123,7 @@
           </div>
         </div>
         <div class="card-footer text-center">
-          <button @click="projects.addProject" class="btn btn-info">
+          <button class="btn btn-info">
             Add Project
           </button>
         </div>
@@ -145,7 +145,7 @@ const v$ = useVuelidate(projects.rules, projects.rowInfo, {
 const submitForm = async () => {
   const isValid = await v$.value.$validate();
   if (isValid) {
-    projects.addContact();
+    projects.addProject();
   }
 };
 </script>

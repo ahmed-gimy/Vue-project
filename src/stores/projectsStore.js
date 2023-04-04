@@ -8,6 +8,7 @@ export const projects = reactive({
     editedProject: null,
 
     data: [],
+    clonedData: [],
 
     rowInfo: {
         name: "",
@@ -24,7 +25,7 @@ export const projects = reactive({
         return {
         name: { 
             required: helpers.withMessage('* name is required', required), 
-            minLength: helpers.withMessage('* name must be more than 3 characters', minLength(3)) ,
+            // minLength: helpers.withMessage('* name must be more than 3 characters', minLength(3)) ,
         },
         description: { 
             // required: helpers.withMessage('* description is required', required), 
@@ -97,7 +98,6 @@ export const projects = reactive({
             timer: 1500
         })
         router.push({ path: "/projects" }); 
-        
     },
 
     resetRowInfo(){
@@ -110,10 +110,19 @@ export const projects = reactive({
             Leader: "",
             Client: "",
         }
-    },
+    },    
 
-    editProject(index){
-        this.rowInfo = {...this.data[index]};
-        this.editedProject = index;
+    updateProject(){
+        this.data[this.editedProject] = this.rowInfo;
+        console.log(this.rowInfo);
+        this.resetRowInfo();
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        router.push({ path: "/projects" });
     },
 })
