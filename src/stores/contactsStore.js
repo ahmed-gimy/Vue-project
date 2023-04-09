@@ -57,7 +57,9 @@ export const contacts = reactive({
 
     onFileChange(e){
         const files = e.target.files
-        this.contactInfo.img = files[0];
+        if(files.length > 0){
+            this.contactInfo.img = URL.createObjectURL(files[0]);
+        }
     },
 
     addContact(){

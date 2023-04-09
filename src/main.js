@@ -5,6 +5,11 @@ window.$ = window.jQuery = require("jquery");
 import 'bootstrap/dist/css/bootstrap.css';
 import bootstrap from 'bootstrap/dist/js/bootstrap.js'
 
+// eslint-disable-next-line no-unused-vars
+import Chart from 'chart.js/auto';
+
+
+
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -54,6 +59,10 @@ import "../node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdo
 import "../node_modules/admin-lte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css"
 import "../node_modules/admin-lte/plugins/bs-stepper/css/bs-stepper.min.css"
 import "../node_modules/admin-lte/plugins/dropzone/min/dropzone.min.css"
+
+
+
+
 
 
 library.add(fas, fab, far, faLock, faEnvelope, faFacebook, faGooglePlus);

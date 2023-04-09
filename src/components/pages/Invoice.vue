@@ -1,5 +1,6 @@
 <template>
   <layout>
+  <div class="card p-2 mt-2">
     <div class="invoice p-3 mb-3">
       <div class="row">
         <div class="col-12">
@@ -91,17 +92,8 @@
       <div class="row">
         <div class="col-6">
           <p class="lead">Payment Methods:</p>
-          <!-- <img src="../../dist/img/credit/visa.png" alt="Visa" />
-          <img src="../../dist/img/credit/mastercard.png" alt="Mastercard" />
-          <img
-            src="../../dist/img/credit/american-express.png"
-            alt="American Express"
-          />
-          <img src="../../dist/img/credit/paypal2.png" alt="Paypal" /> -->
-          <p
-            class="text-muted well well-sm shadow-none"
-            style="margin-top: 10px"
-          >
+
+          <p class="text-muted well well-sm shadow-none" style="margin-top: 10px">
             Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
             weebly ning heekya handango imeem plugg dopplr jibjab, movity jajah
             plickers sifteo edmodo ifttt zimbra.
@@ -135,35 +127,32 @@
         </div>
       </div>
 
-      <div class="row no-print">
-        <div class="col-12">
-          <button
-            
-            
-            @click="print"
-            class="btn btn-default"
-            ><i class="fas fa-print"></i> Print</button
-          >
-          <!-- <button type="button" class="btn btn-success float-right">
-            <i class="far fa-credit-card"></i> Submit Payment
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary float-right"
-            style="margin-right: 5px"
-          >
-            <i class="fas fa-download"></i> Generate PDF
-          </button> -->
-        </div>
-      </div>
     </div>
+      <div class="row no-print mb-2">
+        <div class="col-12">
+          <button @click="print" class="btn btn-success mr-2"><i class="fas fa-print"></i> Print</button>
+          <button @click="createPdf" class="btn btn-danger"><i class="fas fa-file-pdf mr-2"></i> PDF</button>
+        </div>
+      </div></div>
   </layout>
 </template>
 
 <script setup>
 import layout from "../Layout.vue";
+import html2pdf from 'html2pdf.js'
 
 const print = () => {
   window.print()
+}
+
+const createPdf = () => {
+  const invoiceEl = document.querySelector('.invoice')
+  const options = {
+    margin: 10,
+    filename: 'invoice.pdf',
+    image: { type: 'jpeg', quality: 100 },
+    jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' }
+  }
+  html2pdf().set(options).from(invoiceEl).save()
 }
 </script>

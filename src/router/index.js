@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../components/pages/Home.vue";
+import Home from "../components/pages/Home/Home.vue";
 import Contacts from "../components/pages/contacts/Contacts.vue";
 import createContact from "../components/pages/contacts/create.vue";
 import editContact from "../components/pages/contacts/edit.vue";

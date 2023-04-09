@@ -10,7 +10,7 @@
         </div>
       </section>
     </div>
-    <Footer></Footer>
+    <Footer class=""></Footer>
   </div>
 </template>
 

@@ -2,6 +2,8 @@ import { reactive, computed } from "vue";
 import router from "../router/index";
 import { required, helpers, minLength, numeric } from "@vuelidate/validators"
 import Swal from "sweetalert2";
+import html2pdf from 'html2pdf.js';
+import * as XLSX from 'xlsx/xlsx.mjs';
 export const products = reactive({
     editedProduct: null,
 
@@ -40,7 +42,9 @@ export const products = reactive({
 
     onFileChange(e){
         const files = e.target.files
-        this.productInfo.image = files[0];
+        if(files.length > 0){
+            this.productInfo.image = URL.createObjectURL(files[0]);
+        }
     },
 
     addProduct(){
@@ -52,7 +56,7 @@ export const products = reactive({
             icon: 'success',
             title: 'Your work has been saved',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1000
         })
         router.push({ path: "/products" }); 
         
@@ -121,5 +125,23 @@ export const products = reactive({
         product.name.toLowerCase().includes(searchText) ||
         product.price.toString().includes(searchText)
         );
-    }
+    },
+
+    exportProducts(){
+        const worksheet = XLSX.utils.json_to_sheet(this.products);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Products');
+        XLSX.writeFile(workbook, 'products.xlsx');
+    },
+
+    createPdf(){
+        const productsEl = document.querySelector('.table')
+        const options = {
+          margin: 10,
+          filename: 'products.pdf',
+          image: { type: 'jpeg', quality: 100 },
+          jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' }
+        }
+        html2pdf().set(options).from(productsEl).save()
+      }
 })

@@ -1,10 +1,9 @@
 <template>
   <body class="hold-transition sidebar-mini layout-fixed">
-    <div >
+    <div>
       <Preloader></Preloader>
-      
     </div>
-    <router-view/>
+    <router-view />
   </body>
 </template>
 
@@ -13,5 +12,4 @@ import Preloader from "./dashboard/Preloader.vue";
 </script>
 
 <style>
-
 </style>

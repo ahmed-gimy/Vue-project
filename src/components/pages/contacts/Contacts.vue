@@ -67,10 +67,10 @@
                       </ul>
                     </div>
                     <div class="col-5 text-center">
-                      <img
-                        src="{{ contact.img }}"
+                      <img width="100" height="100"
+                        :src="contact.img"
                         alt="user-avatar"
-                        class="img-circle img-fluid"
+                        class="img-circle "
                       />
                     </div>
                   </div>

@@ -97,7 +97,11 @@
             </router-link>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link to="/products/create" @click="products.resetProductInfo()" class="nav-link">
+                <router-link
+                  to="/products/create"
+                  @click="products.resetProductInfo()"
+                  class="nav-link"
+                >
                   <i class="fas fa-plus nav-icon"></i>
                   <p>Add</p>
                 </router-link>
@@ -128,7 +132,16 @@
             </ul>
           </li>
           <li class="nav-item">
-            <router-link to="/tasks" href="#" class="nav-link">
+            <router-link to="/invoice" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
+              <p>
+                Invoice
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/tasks" class="nav-link">
               <i class="nav-icon fas fa-tasks"></i>
               <p>
                 Tasks
@@ -138,11 +151,11 @@
           </li>
 
           <li class="nav-item">
-            <router-link to="/invoice" class="nav-link">
-              <i class="nav-icon fas fa-money-check-alt"></i>
+            <router-link to="/reports" class="nav-link">
+              <i class="nav-icon fas fa-tasks"></i>
               <p>
-                Invoice
-                <i class="fas fa-angle-left right"></i>
+                Reports
+                <!-- <i class="fas fa-angle-left right"></i> -->
               </p>
             </router-link>
           </li>
