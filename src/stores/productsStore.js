@@ -135,13 +135,25 @@ export const products = reactive({
     },
 
     createPdf(){
+        // this.hideElement()
         const productsEl = document.querySelector('.table')
         const options = {
           margin: 10,
           filename: 'products.pdf',
-          image: { type: 'jpeg', quality: 100 },
+          image: { type: 'jpeg', quality: 1},
           jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' }
         }
         html2pdf().set(options).from(productsEl).save()
-      }
+        // this.showElement()
+    },
+
+    // hideElement(){
+    //     const el = document.querySelector('.hide-in-pdf')
+    //     el.style.disply = 'none'
+    // },
+
+    // showElement(){
+    //     const el = document.querySelector('.hide-in-pdf')
+    //     el.style.disply = 'block'
+    // }
 })

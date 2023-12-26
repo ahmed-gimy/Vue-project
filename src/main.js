@@ -1,11 +1,12 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-window.$ = window.jQuery = require("jquery");
-import 'bootstrap/dist/css/bootstrap.css';
-import bootstrap from 'bootstrap/dist/js/bootstrap.js'
 
-// eslint-disable-next-line no-unused-vars
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.js';
+import 'bootstrap' 
+
+
 import Chart from 'chart.js/auto';
 
 
@@ -42,9 +43,7 @@ import "../node_modules/admin-lte/plugins/bs-stepper/js/bs-stepper.min.js"
 import "../node_modules/admin-lte/plugins/dropzone/min/dropzone.min.js"
 
 
-//import DataTable
-import '../public/assets/DataTables/datatables.min.css'
-import '../public/assets/DataTables/Buttons-2.3.6/css/buttons.bootstrap.min.css'
+
 
 
 
@@ -68,4 +67,4 @@ import "../node_modules/admin-lte/plugins/dropzone/min/dropzone.min.css"
 library.add(fas, fab, far, faLock, faEnvelope, faFacebook, faGooglePlus);
 dom.watch()
 
-createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router, bootstrap).mount('#app')
+createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router).mount('#app')

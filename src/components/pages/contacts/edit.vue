@@ -121,32 +121,39 @@
           <div class="form-group">
             <label>Image</label>
             <div class="input-group mb-0">
-              <input type="file" class="form-control" id="inputGroupFile02" />
-              <label class="input-group-text" for="inputGroupFile02"
-                >Upload</label
-              >
+              <input
+                @change="contacts.onFileChange"
+                type="file"
+                class="form-control"
+                id="inputGroupFile02"
+              />
+              <label
+                class="input-group-text"
+                for="inputGroupFile02"
+              >Upload</label>
             </div>
             <p
-              class="text-red my-0"
-              v-for="error in v$.img.$errors"
-              :key="error.$uid"
-            >
-              {{ error.$message }}
-            </p>
-          </div>
+            class="text-red my-0"
+            v-for="error in v$.img.$errors"
+            :key="error.$uid"
+          >
+            {{ error.$message }}
+          </p>
         </div>
+      </div>
 
-        <div class="card-footer text-center">
-          <button type="submit" class="btn btn-info">Update Contact</button>
-        </div>
-      </form>
-    </div>
-  </layout>
-</template>
-  
+      <div class="card-footer text-center">
+        <button
+          type="submit"
+          class="btn btn-info"
+        >Update Contact</button>
+      </div>
+    </form>
+  </div>
+</layout></template>
+
 <script setup>
 import useVuelidate from "@vuelidate/core";
-// eslint-disable-next-line no-unused-vars
 import { required } from "@vuelidate/validators";
 import { contacts } from "../../../stores/contactsStore";
 import layout from "../../Layout.vue";

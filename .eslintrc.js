@@ -17,6 +17,16 @@ export default {
         "vue"
     ],
     "rules": {
-        "vue/multi-word-component-names": "off"
+        "vue/multi-word-component-names": "off",
+        // 'vue/max-attributes-per-line': [
+        //     'error',
+        //     {
+        //         singleline: 2, // Allows up to 3 attributes on a single line
+        //         multiline: {
+        //             max: 1, // Only allows 1 attribute per line on multi-line elements
+        //             allowFirstLine: true,
+        //         },
+        //     },
+        // ],
     }
 }

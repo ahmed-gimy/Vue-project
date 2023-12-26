@@ -1,9 +1,11 @@
 <template>
   <Layout>
-
-    <div class="d-sm-flex flex-column">
-      <BarChart />
-      <LineChart />
+    <div class="card">
+      <div class="card-header bg-info">Charts</div>
+      <div class="card-body d-sm-flex flex-column">
+        <BarChart />
+        <LineChart />
+      </div>
     </div>
   </Layout>
 </template>

@@ -2,7 +2,11 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="https://weblytech.com/" target="blanck" class="brand-link">
+    <a
+      href="https://weblytech.com/"
+      target="blanck"
+      class="brand-link"
+    >
       <img
         src="../assets/img/webly.png"
         alt="AdminLTE Logo"
@@ -24,15 +28,20 @@
           />
         </div>
         <div class="info">
-          <a href="https://weblytech.com/" target="blanck" class="d-block"
-            >Weblytech</a
-          >
+          <a
+            href="https://weblytech.com/"
+            target="blanck"
+            class="d-block"
+          >Weblytech</a>
         </div>
       </div>
 
       <!-- SidebarSearch Form -->
       <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
+        <div
+          class="input-group"
+          data-widget="sidebar-search"
+        >
           <input
             class="form-control form-control-sidebar"
             type="search"
@@ -58,7 +67,10 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <router-link class="nav-link" to="/">
+            <router-link
+              class="nav-link"
+              to="/"
+            >
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home
@@ -67,7 +79,34 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/contacts" class="nav-link">
+            <router-link
+              to="/quote"
+              class="nav-link"
+            >
+              <i class="nav-icon fas fa-dollar-sign"></i>
+              <p>
+                Quotations
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </router-link>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link
+                  to="/contacts/create"
+                  class="nav-link"
+                  @click="contacts.resetContactInfo()"
+                >
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>Add</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <router-link
+              to="/contacts"
+              class="nav-link"
+            >
               <i class="nav-icon fas fa-phone-alt"></i>
               <p>
                 Contacts
@@ -88,7 +127,10 @@
             </ul>
           </li>
           <li class="nav-item">
-            <router-link to="/products" class="nav-link">
+            <router-link
+              to="/products"
+              class="nav-link"
+            >
               <i class="nav-icon fas fa-cart-plus"></i>
               <p>
                 Products
@@ -108,9 +150,36 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <router-link
+              to="/users"
+              class="nav-link"
+            >
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Users
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </router-link>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link
+                  to="/users/create"
+                  @click="users.resetUserInfo()"
+                  class="nav-link"
+                >
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>Add</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
 
           <li class="nav-item">
-            <router-link to="/projects" class="nav-link">
+            <router-link
+              to="/projects"
+              class="nav-link"
+            >
               <i class="nav-icon fas fa-project-diagram"></i>
               <p>
                 Projects
@@ -121,7 +190,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <router-link
-                  @click="projects.resetRowInfo()"
+                  @click="projects.resetProjectInfo()"
                   to="/projects/create"
                   class="nav-link"
                 >
@@ -132,47 +201,50 @@
             </ul>
           </li>
           <li class="nav-item">
-            <router-link to="/invoice" class="nav-link">
+            <router-link
+              to="/invoice"
+              class="nav-link"
+            >
               <i class="nav-icon fas fa-money-check-alt"></i>
-              <p>
-                Invoice
-                <i class="fas fa-angle-left right"></i>
-              </p>
+              <p>Invoice</p>
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/tasks" class="nav-link">
+            <router-link
+              to="/tasks"
+              class="nav-link"
+            >
               <i class="nav-icon fas fa-tasks"></i>
-              <p>
-                Tasks
-                <!-- <i class="fas fa-angle-left right"></i> -->
-              </p>
-            </router-link>
-          </li>
+            <p>
+              Tasks
+              <!-- <i class="fas fa-angle-left right"></i> -->
+            </p>
+          </router-link>
+        </li>
 
-          <li class="nav-item">
-            <router-link to="/reports" class="nav-link">
-              <i class="nav-icon fas fa-tasks"></i>
-              <p>
-                Reports
-                <!-- <i class="fas fa-angle-left right"></i> -->
-              </p>
-            </router-link>
-          </li>
-          <!-- <li class="nav-header">EXAMPLES</li> -->
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-</template>
+        <li class="nav-item">
+          <router-link
+            to="/reports"
+            class="nav-link"
+          >
+            <i class="nav-icon fas fa-clipboard"></i>
+            <p>
+              Reports
+              <!-- <i class="fas fa-angle-left right"></i> -->
+            </p>
+          </router-link>
+        </li>
+        <!-- <li class="nav-header">EXAMPLES</li> -->
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside></template>
 
 <script setup>
 import { contacts } from "../stores/contactsStore";
 import { projects } from "../stores/projectsStore";
 import { products } from "../stores/productsStore";
+import { users } from "../stores/usersStore";
 </script>
-
-<style>
-</style>

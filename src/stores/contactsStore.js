@@ -2,11 +2,12 @@ import { reactive, computed } from "vue";
 import router from "../router/index";
 import { required, helpers, email, minLength, numeric } from "@vuelidate/validators"
 import Swal from "sweetalert2";
+import {utilites} from '../utilites/utilites'
 export const contacts = reactive({
-    editedContact: null,
 
-    contacts: [],
-    clonedContacts:[],  
+    editedCurrentContactIndex: null,
+
+    contacts: [],  
     
 
     contactInfo: {
@@ -63,18 +64,11 @@ export const contacts = reactive({
     },
 
     addContact(){
-        this.contacts.push(this.contactInfo);
-        this.clonedContacts=[...this.contacts];
+        this.contacts = utilites.add(this.contacts, this.contactInfo);
+        utilites.clone(this.contacts);
         this.resetContactInfo();
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 1500
-        })
-        router.push({ path: "/contacts" }); 
-        
+        utilites.sweetAlert();
+        router.push({ path: "/contacts" });
     },
 
     deleteContact(index){
@@ -99,9 +93,8 @@ export const contacts = reactive({
     },
 
     deleteContactConfirm(index){
-        this.contacts= this.contacts.filter((item, i)=>(index !== i));
-        this.clonedContacts=[...this.contacts]
-        // this.contacts.splice(index, 1);
+        this.contacts = utilites.delete(this.contacts, index)
+        utilites.clone(this.contacts);
     },
 
     resetContactInfo(){
@@ -118,29 +111,21 @@ export const contacts = reactive({
     },
 
     editContact(index){
-        this.contactInfo = {...this.contacts[index]};
-        this.editedContact = index;
-        console.log(index);
-        console.log(this.editedContact);
-        console.log(this.contactInfo);
+        this.contactInfo = structuredClone(this.contacts[index]);
+        // this.contactInfo = {...this.contacts[index]};
+        this.editedCurrentContactIndex = index;
     },
 
     updateContact(){
-        this.contacts[this.editedContact] = this.contactInfo;
-        this.clonedContacts=[...this.contacts]
+        this.contacts[this.editedCurrentContactIndex] = this.contactInfo;
+        utilites.clone(this.contacts);
         this.resetContactInfo();
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 1500
-        })
+        utilites.sweetAlert();
         router.push({ path: "/contacts" });
     },
 
     search(searchText){
-        this.contacts = this.clonedContacts.filter((contact) =>
+        this.contacts = utilites.clonedArray.filter((contact) =>
             contact.name.toLowerCase().includes(searchText) ||
             contact.about.toLowerCase().includes(searchText)
         );

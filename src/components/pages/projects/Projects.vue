@@ -1,152 +1,127 @@
 <template>
   <layout>
-    <div class="flex-sm-column">
-      <router-link
-        @click="projects.resetRowInfo()"
-        to="/projects/create"
-        class="btn btn-success my-2 mr-2"
-      >
-        <i class="fas fa-plus nav-icon"></i>
-        Add
-      </router-link>
-      <router-link
-        @click="edit()"
-        to="/projects/edit"
-        class="btn btn-info mr-2"
-      >
-        <i class="fas fa-pencil-alt nav-icon"></i>
-        Edit
-      </router-link>
-      <button @click="deleteProject()" class="btn btn-danger mt-2 mb-2">
-        <i class="fas fa-trash nav-icon"></i>
-        Delete
-      </button>
-    </div>
-    <div class="card p-2">
-      <DataTable
-        ref="table"
-        :data="projects.data"
-        :columns="projects.columns"
-        :options="{
-          responsive: true,
-          autoWidth: false,
-          select: true,
-          dom: 'Bfrtip',
-        }"
-        class="display table table-striped table-hover overflow-auto"
-        width="100%"
-      >
-        <thead>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>duration</th>
-            <th>Status</th>
-            <th>budget</th>
-            <th>Leader</th>
-            <th>Client</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(project, index) in projects.data" :key="index">
-            <td>{{ project.name }}</td>
-            <td>{{ project.description }}</td>
-            <td>{{ project.duration }}</td>
-            <td>{{ project.Status }}</td>
-            <td>{{ project.budget }}</td>
-            <td>{{ project.Leader }}</td>
-            <td>{{ project.Client }}</td>
+    <router-link
+      to="/projects/create"
+      class="btn btn-success my-2"
+      @click="projects.resetProjectInfo()"
+    >
+      <i class="fas fa-plus nav-icon mx-2"></i>Add Project
+    </router-link>
+    <button
+      class="btn btn-info ml-2"
+      @click="projects.exportProjects()"
+    >
+      <i class="fas fa-download mr-2"></i>Excel
+    </button>
+    <button
+      class="btn btn-danger ml-2"
+      @click="projects.createPdf()"
+    >
+      <i class="fas fa-file-pdf mr-2"></i>PDF
+    </button>
+
+    <div class="card">
+      <div class="card-header bg-info">
+        <h3 class="card-title"><i class="fas fa-project-diagram mr-2"></i>Projects</h3>
+        <div class="card-tools">
+          <div
+            class="input-group input-group-sm"
+            style="width: 150px"
+          >
+            <input
+              v-model.trim="search"
+              type="search"
+              name="table_search"
+              class="form-control float-right"
+              placeholder="Search"
+            />
+            <div class="input-group-append">
+              <button
+                type="submit"
+                class="btn btn-default"
+              >
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body table-responsive p-0">
+        <table class="table table-hover table-head-fixed text-nowrap">
+          <thead>
+            <tr v-if="projects.projects.length >= 1">
+              <th>Name</th>
+              <th>Description</th>
+              <th>Duration</th>
+              <th>Extra Houres</th>
+              <th>Status</th>
+              <th>Budget</th>
+              <th>Leader</th>
+              <th>Client</th>
+              <th
+                id="element-to-hide"
+                data-html2canvas-ignore="true"
+                class="text-center"
+              >
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <h3
+              class="text-center"
+              v-if="projects.projects.length < 1"
+            >
+              No Projects Are Found
+            </h3>
+            <tr
+              v-for="(project, index) in projects.projects"
+              :key="index"
+            >
+              <td>{{ project.name }}</td>
+              <td>{{ project.description }}</td>
+              <td>{{ project.duration }}</td>
+              <td>{{ project.extrahoures }}</td>
+              <td>{{ project.status }}</td>
+              <td>{{ project.budget }}</td>
+              <td>{{ project.leader }}</td>
+              <td>{{ project.client }}</td>
+              <td
+                id="element-to-hide"
+                data-html2canvas-ignore="true"
+                class="text-center"
+              >
+                <router-link
+                  to="/projects/edit"
+                  class="btn btn-info btn-sm rounded-circle"
+                  @click="projects.editProject(index)"
+                >
+                  <i class="fas fa-pencil-alt"></i>
+                </router-link>
+                <button
+                  @click="projects.deleteProject(index)"
+                  type="button"
+                class="btn btn-danger btn-sm mx-2 rounded-circle"
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
           </tr>
         </tbody>
-      </DataTable>
+      </table>
     </div>
-  </layout>
-</template>
-
-
+  </div>
+</layout></template>
 
 <script setup>
-import { ref, onMounted } from "vue";
 import { projects } from "../../../stores/projectsStore";
 import layout from "../../Layout.vue";
-import DataTable from "datatables.net-vue3";
-import DataTablesLib from "datatables.net";
-import DataTablesCore from "datatables.net-bs5";
-import ButtonsHtml5 from "datatables.net-buttons/js/buttons.html5";
-import print from "datatables.net-buttons/js/buttons.print";
-import Editor from "datatables.net-editor-bs5";
-import jsZip from "jszip";
-import pdfmake from "pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
-import "datatables.net-buttons/js/buttons.colVis";
-import "datatables.net-buttons/js/buttons.html5";
-import "datatables.net-buttons/js/buttons.print";
-import "datatables.net-responsive-bs5";
-import "datatables.net-scroller-bs5";
-import "datatables.net-searchpanes-bs5";
-import "datatables.net-select-bs5";
-import "datatables.net-buttons-bs5";
-import "datatables.net-bs5";
-import Swal from "sweetalert2";
+import { ref, watch } from "vue";
 
-pdfmake.vfs = pdfFonts.pdfMake.vfs;
-window.jSZip = jsZip;
+const search = ref("");
 
-DataTable.use(DataTablesCore, DataTablesLib, Editor, print, ButtonsHtml5);
-
-const table = ref();
-let dt;
-
-onMounted(function () {
-  dt = table.value.dt;
+watch(search, () => {
+  projects.search(search.value.toLowerCase());
 });
-
-function deleteProject() {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      remove();
-      Swal.fire("Deleted!", "Your file has been deleted.", "success");
-    }
-  });
-}
-
-function remove() {
-  dt.rows({ selected: true }).every(function () {
-    let idx = projects.data.indexOf(this.data());
-    projects.data.splice(idx, 1);
-  });
-}
-
-function edit() {
-  dt.rows({ selected: true }).every(function () {
-    let row = this.data();
-    projects.rowInfo = { ...row };
-    projects.editedProject = row;
-  });
-}
 </script>
-
-
-
-<style>
-.dt-button {
-  cursor: pointer;
-  border: none;
-  background-color: rgb(172, 170, 170);
-  border-radius: 5px;
-  padding: 5px 5px;
-}
-</style>
-
-
-
-
-

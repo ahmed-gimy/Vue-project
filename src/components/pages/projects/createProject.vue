@@ -12,7 +12,7 @@
               :style="{ 'border-color': v$.name.$error ? 'red' : '' }"
               class="form-control"
               type="text"
-              v-model="projects.rowInfo.name"
+              v-model="projects.projectInfo.name"
             />
             <p
               class="text-red my-0"
@@ -25,14 +25,14 @@
           <div class="form-group">
             <label>Client</label>
             <input
-              :style="{ 'border-color': v$.Client.$error ? 'red' : '' }"
+              :style="{ 'border-color': v$.client.$error ? 'red' : '' }"
               class="form-control"
               type="text"
-              v-model="projects.rowInfo.Client"
+              v-model="projects.projectInfo.client"
             />
             <p
               class="text-red my-0"
-              v-for="error in v$.Client.$errors"
+              v-for="error in v$.client.$errors"
               :key="error.$uid"
             >
               {{ error.$message }}
@@ -41,14 +41,14 @@
           <div class="form-group">
             <label>Leader</label>
             <input
-              :style="{ 'border-color': v$.Leader.$error ? 'red' : '' }"
+              :style="{ 'border-color': v$.leader.$error ? 'red' : '' }"
               class="form-control"
               type="text"
-              v-model="projects.rowInfo.Leader"
+              v-model="projects.projectInfo.leader"
             />
             <p
               class="text-red my-0"
-              v-for="error in v$.Leader.$errors"
+              v-for="error in v$.leader.$errors"
               :key="error.$uid"
             >
               {{ error.$message }}
@@ -57,9 +57,9 @@
           <div class="form-group">
             <label>Status</label>
             <select
-              :style="{ 'border-color': v$.Status.$error ? 'red' : '' }"
+              :style="{ 'border-color': v$.status.$error ? 'red' : '' }"
               class="form-select"
-              v-model="projects.rowInfo.Status"
+              v-model="projects.projectInfo.status"
             >
               <option value="On Hold">On Hold</option>
               <option value="Canceled">Canceled</option>
@@ -67,7 +67,7 @@
             </select>
             <p
               class="text-red my-0"
-              v-for="error in v$.Status.$errors"
+              v-for="error in v$.status.$errors"
               :key="error.$uid"
             >
               {{ error.$message }}
@@ -79,7 +79,7 @@
               :style="{ 'border-color': v$.budget.$error ? 'red' : '' }"
               class="form-control"
               type="number"
-              v-model="projects.rowInfo.budget"
+              v-model="projects.projectInfo.budget"
             />
             <p
               class="text-red my-0"
@@ -90,12 +90,12 @@
             </p>
           </div>
           <div class="form-group">
-            <label>description</label>
+            <label>Description</label>
             <textarea
               :style="{ 'border-color': v$.description.$error ? 'red' : '' }"
               class="form-control"
               type="text"
-              v-model="projects.rowInfo.description"
+              v-model="projects.projectInfo.description"
             ></textarea>
             <p
               class="text-red my-0"
@@ -106,12 +106,12 @@
             </p>
           </div>
           <div class="form-group">
-            <label>duration</label>
+            <label>Duration</label>
             <input
               :style="{ 'border-color': v$.duration.$error ? 'red' : '' }"
               class="form-control"
               type="number"
-              v-model="projects.rowInfo.duration"
+              v-model="projects.projectInfo.duration"
             />
             <p
               class="text-red my-0"
@@ -121,11 +121,25 @@
               {{ error.$message }}
             </p>
           </div>
+          <div class="form-group">
+            <label>Extra Houres</label>
+            <input
+              :style="{ 'border-color': v$.extrahoures.$error ? 'red' : '' }"
+              class="form-control"
+              type="number"
+              v-model="projects.projectInfo.extrahoures"
+            />
+            <p
+              class="text-red my-0"
+              v-for="error in v$.extrahoures.$errors"
+              :key="error.$uid"
+            >
+              {{ error.$message }}
+            </p>
+          </div>
         </div>
         <div class="card-footer text-center">
-          <button class="btn btn-info">
-            Add Project
-          </button>
+          <button class="btn btn-info">Add Project</button>
         </div>
       </form>
     </div>
@@ -139,7 +153,7 @@ import { required } from "@vuelidate/validators";
 import { projects } from "../../../stores/projectsStore";
 import layout from "../../Layout.vue";
 
-const v$ = useVuelidate(projects.rules, projects.rowInfo, {
+const v$ = useVuelidate(projects.rules, projects.projectInfo, {
   $autoDirty: true,
 });
 const submitForm = async () => {

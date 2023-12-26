@@ -1,18 +1,16 @@
 import { reactive, computed } from "vue";
 import router from "../router/index";
-import { required, helpers, minLength } from "@vuelidate/validators"
+import { required, email, helpers, minLength } from "@vuelidate/validators"
 import Swal from "sweetalert2";
-import html2pdf from 'html2pdf.js';
-import * as XLSX from 'xlsx/xlsx.mjs';
 
-export const projects = reactive({
-    editedProject: null,
-    
-    projects: [],
-    clonedProjects:[],  
+export const quotations = reactive({
+    editedQuote: null,
+
+    quotes: [],
+    clonedQuotes:[],  
     
 
-    projectInfo: {
+    quoteInfo: {
         name: "",
         description: "",
         duration: "",
@@ -58,10 +56,10 @@ export const projects = reactive({
 }}),
 
 
-    addProject(){
-        this.projects.push(this.projectInfo);
-        this.clonedProjects = [...this.projects];
-        this.resetProjectInfo();
+    addQuote(){
+        this.quotes.push(this.quoteInfo);
+        this.clonedQuotes = [...this.quotes];
+        this.resetQuoteInfo();
         Swal.fire({
             position: 'center',
             icon: 'success',
@@ -69,24 +67,24 @@ export const projects = reactive({
             showConfirmButton: false,
             timer: 1000
         })
-        router.push({ path: "/projects" }); 
+        router.push({ path: "/quote" }); 
         
     },
 
-    resetProjectInfo(){
-        this.projectInfo = {
+    resetQuoteInfo(){
+        this.quoteInfo = {
             name: "",
             description: "",
             duration: "",
             extrahoures: "",
-            status: "",
+            Status: "",
             budget: "",
-            leader: "",
-            client: "",
+            Leader: "",
+            Client: "",
         }
     },
 
-    deleteProject(index){
+    deleteQuote(index){
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -97,7 +95,7 @@ export const projects = reactive({
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                this.deleteProjectConfirm(index);
+                this.deleteQuoteConfirm(index);
                 Swal.fire(
                 'Deleted!',
                 'Your file has been deleted.',
@@ -107,21 +105,21 @@ export const projects = reactive({
         })
     },
 
-    deleteProjectConfirm(index){
-        this.projects = this.projects.filter((item, i)=>(index !== i));
-        this.clonedProjects = [...this.projects]
-        // this.projects.splice(index, 1);
+    deleteQuoteConfirm(index){
+        this.quotes = this.quotes.filter((item, i)=>(index !== i));
+        this.clonedQuotes = [...this.quotes]
+        // this.quotes.splice(index, 1);
     },
 
-    editProject(index){
-        this.projectInfo = {...this.projects[index]};
-        this.editedProject = index;
+    editQuote(index){
+        this.quoteInfo = {...this.quotes[index]};
+        this.editedQuote = index;
     },
 
-    updateProject(){
-        this.projects[this.editedProject] = this.projectInfo;
-        this.clonedProjects = [...this.projects]
-        this.resetProjectInfo();
+    updateQuote(){
+        this.quotes[this.editedQuote] = this.quoteInfo;
+        this.clonedQuotes = [...this.quotes]
+        this.resetQuoteInfo();
         Swal.fire({
             position: 'center',
             icon: 'success',
@@ -129,31 +127,13 @@ export const projects = reactive({
             showConfirmButton: false,
             timer: 1500
         })
-        router.push({ path: "/projects" });
+        router.push({ path: "/quote" });
     },
 
     search(searchText){
-        this.projects = this.clonedProjects.filter((project) =>
-        project.name.toLowerCase().includes(searchText) ||
-        project.description.toLowerCase().includes(searchText)
+        this.quotes = this.clonedQuotes.filter((quote) =>
+        quote.name.toLowerCase().includes(searchText) ||
+        quote.description.toLowerCase().includes(searchText)
         );
-    },
-
-    exportProjects(){
-        const worksheet = XLSX.utils.json_to_sheet(this.projects);
-        const workbook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(workbook, worksheet, 'Projects');
-        XLSX.writeFile(workbook, 'Projects.xlsx');
-    },
-
-    createPdf(){
-        const projectsEl = document.querySelector('.table')
-        const options = {
-          margin: 10,
-          filename: 'projects.pdf',
-          image: { type: 'jpeg', quality: 1},
-          jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' }
-        }
-        html2pdf().set(options).from(projectsEl).save()
     },
 })

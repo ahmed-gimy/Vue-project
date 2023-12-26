@@ -1,22 +1,30 @@
-<!-- eslint-disable no-unused-vars -->
 <template>
   <layout>
     <div class="card card-solid">
       <div class="card-header">
         <div class="card-title">
-          <button @click="createColumn" class="btn btn-info mb-2">
+          <button
+            @click="createColumn"
+            class="btn btn-info mb-2"
+          >
             <i class="fas fa-plus nav-icon mx-2"></i>Add New column
           </button>
         </div>
         <div class="card-tools">
-          <form class="d-flex" role="search">
+          <form
+            class="d-flex"
+            role="search"
+          >
             <input
               class="form-control me-2"
               type="search"
               placeholder="Search"
             />
             <div class="input-group-append">
-              <button type="submit" class="btn btn-info">
+              <button
+                type="submit"
+                class="btn btn-info"
+              >
                 <i class="fa fa-search"></i>
               </button>
             </div>
@@ -24,8 +32,11 @@
         </div>
       </div>
       <div class="card-body bg-info-subtle overflow-auto p-2 text-center">
-        <h3 class="p-2" v-if="columns.length < 1">No Column Are Found</h3>
-        <!-- <div> -->
+        <h3
+          class="p-2"
+          v-if="columns.length < 1"
+        >No Column Are Found</h3>
+
         <draggable
           v-model="columns"
           group="columns"
@@ -36,7 +47,10 @@
         >
           <template #item="{ element: column }">
             <div class="column">
-              <div class="card mx-2" style="min-width: 250px">
+              <div
+                class="card mx-2"
+                style="min-width: 250px"
+              >
                 <div class="card-header d-inline-flex">
                   <div class="card-title d-inline-flex">
                     <i
@@ -52,16 +66,12 @@
                         @keyup.enter="$event.target.blur()"
                         @keydown.backspace="
                           column.title === ''
-                            ? (columns = columns.filter(
-                                (c) => c.id !== column.id
-                              ))
+                            ? (columns = columns.filter((c) => c.id !== column.id))
                             : null
                         "
                         @blur="
                           column.title === ''
-                            ? (columns = columns.filter(
-                                (c) => c.id !== column.id
-                              ))
+                            ? (columns = columns.filter((c) => c.id !== column.id))
                             : null
                         "
                       />
@@ -109,7 +119,10 @@
                             style="cursor: move"
                             class="drag-handle bi bi-grip-vertical pt-2 ml-1"
                           ></i>
-                          <span class="bd-info p-2" style="">
+                          <span
+                            class="bd-info p-2"
+                            style=""
+                          >
                             <input
                               v-model="task.title"
                               style="border: none; width: 100%"
@@ -120,23 +133,13 @@
                           </span>
                         </div>
                         <div class="p-2 float-left">
-                          <!-- <button
-                            style="border: none"
-                            class="bg-info mx-2 rounded"
-                          >
-                            <i
-                              style="cursor: pointer"
-                              class="fas fa-pencil-alt mx-2"
-                            ></i>
-                          </button> -->
                           <button
                             style="border: none"
-                            class="bg-danger rounded"
-                            @click="deleteTask(task.id)"
+                            class="btn btn-danger btn-sm mx-2 rounded-circle"
                           >
                             <i
                               style="cursor: pointer"
-                              class="fas fa-trash mx-2"
+                              class="fas fa-trash"
                             ></i>
                           </button>
                         </div>
@@ -144,16 +147,17 @@
                     </template>
                   </draggable>
                 </div>
-                <new-task @add="column.tasks.push($event)" class="mx-2" />
+                <new-task
+                  @add="column.tasks.push($event)"
+                  class="mx-2"
+                />
               </div>
             </div>
           </template>
         </draggable>
-        <!-- </div> -->
-      </div>
     </div>
-  </layout>
-</template>
+  </div>
+</layout></template>
 
 <script setup>
 import NewTask from "./NewTask.vue";
@@ -178,26 +182,4 @@ const createColumn = () => {
     document.querySelector(".column:last-child .title-input").focus();
   });
 };
-
-// console.log(columns.value);
-const deleteTask = (identity) => {
-  // console.log(tasks[0].id);
-  // tasks.filter((t) => {
-  //   t.id != t[id];
-  // });
-  tasks.map((task, i) => {
-    // console.log(t.id);
-    // console.log(identity);
-    // console.log(t.id == identity);
-    if (task.id == identity) {
-      removeByIndex(i);
-    }
-  });
-};
-function removeByIndex(index) {
-  console.log("object");
-  tasks = tasks.filter((t, i) => {
-    i != index;
-  });
-}
 </script>
